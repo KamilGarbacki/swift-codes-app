@@ -1,0 +1,25 @@
+server:
+    port: 8080
+
+cors:
+    allowed-origins: ${CORS_ORIGINS:"*"}
+    allowed-methods: "*"
+    allowed-headers: "*"
+    exposed-headers: "*"
+
+spring:
+    main:
+        web-application-type: servlet
+    application:
+        name: SWIFT_CODES_App
+    datasource:
+        url: jdbc:postgresql://localhost:5432/swiftn
+        username: admin
+        password: admin
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                format_sql: true
+
