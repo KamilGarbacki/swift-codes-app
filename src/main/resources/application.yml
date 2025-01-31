@@ -8,12 +8,10 @@ cors:
     exposed-headers: "*"
 
 spring:
-    main:
-        web-application-type: servlet
     application:
-        name: SWIFT_CODES_App
+        name: swift-codes-app
     datasource:
-        url: jdbc:postgresql://localhost:5432/swiftn
+        url: jdbc:postgresql://localhost:5432/swift
         username: admin
         password: admin
     jpa:

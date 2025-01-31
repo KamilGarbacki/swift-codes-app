@@ -3,19 +3,17 @@ package com.example.swiftCodesApp.model;
 import com.example.swiftCodesApp.listener.SwiftCodeDetailsListener;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Table
+@Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@Table
-@JsonIgnoreProperties(ignoreUnknown = true)
 @EntityListeners(SwiftCodeDetailsListener.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SwiftCodeDetails {
     @Id
     @SequenceGenerator(

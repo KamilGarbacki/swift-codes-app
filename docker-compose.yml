@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: swift_code_app
+    container_name: swift-code-app
     image: postgres:latest
     environment:
       POSTGRES_USER: admin

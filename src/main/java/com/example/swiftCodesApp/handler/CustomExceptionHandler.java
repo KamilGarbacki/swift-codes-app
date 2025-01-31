@@ -66,7 +66,7 @@ public class CustomExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
 
-    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorMessageDto> handleException(Exception e,
                                                            HttpServletRequest request) {
@@ -78,6 +78,6 @@ public class CustomExceptionHandler {
         );
 
         log.info(error.message());
-        return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -15,8 +15,8 @@ public class CsvUtil {
 
     public static <T> List<T> loadCsvFile(String resourcePath, Class<T> clazz, List<String> columns, boolean withHeader) throws IOException {
         String file = ResourceUtil.readFile(resourcePath);
-        CsvMapper mapper = new CsvMapper();
-        mapper.enable(CsvParser.Feature.IGNORE_TRAILING_UNMAPPABLE);
+        CsvMapper csvMapper = new CsvMapper();
+        csvMapper.enable(CsvParser.Feature.IGNORE_TRAILING_UNMAPPABLE);
 
         CsvSchema schema = CsvSchema.builder()
                 .addColumns(columns, CsvSchema.ColumnType.NUMBER_OR_STRING)
@@ -26,7 +26,7 @@ public class CsvUtil {
             schema = schema.withHeader();
         }
 
-        MappingIterator<T> it = mapper
+        MappingIterator<T> it = csvMapper
                 .readerFor(clazz)
                 .with(schema)
                 .readValues(file);
