@@ -3,7 +3,6 @@ package com.example.swiftCodesApp.util;
 import java.lang.reflect.Field;
 
 public class TransformUtil {
-
     public static void allObjectFieldsToUpperCase(Object obj) throws IllegalAccessException {
         Field[] fields = obj.getClass().getDeclaredFields();
 

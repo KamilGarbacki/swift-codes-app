@@ -26,14 +26,19 @@ public class SwiftCodeDetails {
             generator = "swift_code_details_id_seq"
     )
     private Long id;
+
     @Column(nullable = false)
     private String address;
+
     @Column(nullable = false)
     private String bankName;
+
     @Column(nullable = false)
     private String countryISO2;
+
     @Column(nullable = false)
     private String countryName;
+
     @Column(unique = true, nullable = false, length = 11)
     private String swiftCode;
 

@@ -16,6 +16,7 @@ public interface SwiftCodeDetailsRepo extends JpaRepository<SwiftCodeDetails, Lo
 
     @Query("""
             select s from SwiftCodeDetails s
-            where s.swiftCode like concat(substr(?1, 1, 8), '%') and s.swiftCode not like concat('%', 'XXX')""")
+            where s.swiftCode like concat(substr(?1, 1, 8), '%') and s.swiftCode not like concat('%', 'XXX')
+            """)
     List<SwiftCodeDetails> findBranches(String swiftCode);
 }

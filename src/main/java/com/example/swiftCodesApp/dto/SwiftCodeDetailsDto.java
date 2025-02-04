@@ -10,11 +10,11 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 public class SwiftCodeDetailsDto {
-    protected String address;
-    protected String bankName;
-    protected String countryISO2;
-    protected String countryName;
+    private String address;
+    private String bankName;
+    private String countryISO2;
+    private String countryName;
     @JsonProperty("isHeadquarters")
-    protected boolean isHeadquarters;
-    protected String swiftCode;
+    private boolean isHeadquarters;
+    private String swiftCode;
 }

@@ -21,7 +21,6 @@ import java.util.Objects;
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class CustomExceptionHandler {
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessageDto> handleBadRequestException(MethodArgumentNotValidException e,

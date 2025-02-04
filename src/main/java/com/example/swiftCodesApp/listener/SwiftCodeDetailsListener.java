@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SwiftCodeDetailsListener {
-
     @PrePersist
     @PreUpdate
     private void beforeUpdate(SwiftCodeDetails details) {
@@ -19,7 +18,5 @@ public class SwiftCodeDetailsListener {
             log.error(e.getMessage());
             throw new InternalServerException("Encountered an exception during entity transformation");
         }
-
     }
-
 }

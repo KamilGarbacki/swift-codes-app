@@ -26,11 +26,8 @@ public class CsvUtil {
             schema = schema.withHeader();
         }
 
-        MappingIterator<T> it = csvMapper
-                .readerFor(clazz)
-                .with(schema)
-                .readValues(file);
-
-        return it.readAll();
+        try (MappingIterator<T> it = csvMapper.readerFor(clazz).with(schema).readValues(file)) {
+            return it.readAll();
+        }
     }
 }
