@@ -1,4 +1,4 @@
-# SWIFT-CODE-APP
+# SWIFT CODE APP
 ## Project Description  
 The SWIFT Code Application is designed to parse, store, and retrieve SWIFT (BIC) codes efficiently. It transforms SWIFT data from a spreadsheet into a structured database format, enabling quick and accurate access for applications.  
 
