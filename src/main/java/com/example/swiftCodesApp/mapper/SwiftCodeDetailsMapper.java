@@ -11,8 +11,13 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface SwiftCodeDetailsMapper {
     SwiftCodeDetails toSwiftCodeDetails(SwiftCodeDetailsReq swiftCodeDetailsReq);
+
+    SwiftCodeDetails toSwiftCodeDetails(SwiftCodeDetailsDto swiftCodeDetailsDto);
+
     SwiftCodeDetailsDto toSwiftCodeDetailsDto(SwiftCodeDetails SwiftCodeDetails);
+
     @Mapping(expression = "java(swiftCodeDetails.isHeadquarters())", target = "isHeadquarters")
     CountrySwiftCodeDto toCountrySwiftCodeDto(SwiftCodeDetails swiftCodeDetails);
+
     HeadquartersDetailsDto toHeadquartersSwiftCodeDetailsDto(SwiftCodeDetails swiftCodeDetails);
 }

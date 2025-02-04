@@ -2,6 +2,7 @@ package com.example.swiftCodesApp.handler;
 
 import com.example.swiftCodesApp.dto.ErrorMessageDto;
 import com.example.swiftCodesApp.exception.ConflictException;
+import com.example.swiftCodesApp.exception.InternalServerException;
 import com.example.swiftCodesApp.exception.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,21 @@ public class CustomExceptionHandler {
 
         log.info(error.message());
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(InstantiationException.class)
+    public ResponseEntity<ErrorMessageDto> handleInternalServerException(InternalServerException e,
+                                                                         HttpServletRequest request){
+        ErrorMessageDto error = new ErrorMessageDto(
+                request.getRequestURI(),
+                e.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                LocalDateTime.now()
+        );
+
+        log.info(error.message());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: swift-code-app
-    image: postgres:latest
+    image: postgres:17.2
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
