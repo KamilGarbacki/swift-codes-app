@@ -19,6 +19,7 @@ class SwiftCodeDetailsRepoTest {
             .withDatabaseName("integration-tests-db")
             .withUsername("sa")
             .withPassword("sa");
+
     private static String getTestContainerJdbcUrl() {
         return postgreSQLContainer.getJdbcUrl().replace("jdbc:", "jdbc:tc:");
     }

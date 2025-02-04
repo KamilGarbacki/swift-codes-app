@@ -40,7 +40,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorMessageDto> handleNotFoundException(NotFoundException e,
-                                                                     HttpServletRequest request) {
+                                                                   HttpServletRequest request) {
         ErrorMessageDto error = new ErrorMessageDto(
                 request.getRequestURI(),
                 e.getMessage(),
@@ -70,7 +70,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(InstantiationException.class)
     public ResponseEntity<ErrorMessageDto> handleInternalServerException(InternalServerException e,
-                                                                         HttpServletRequest request){
+                                                                         HttpServletRequest request) {
         ErrorMessageDto error = new ErrorMessageDto(
                 request.getRequestURI(),
                 e.getMessage(),

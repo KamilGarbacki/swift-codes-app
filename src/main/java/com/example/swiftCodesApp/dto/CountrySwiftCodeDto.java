@@ -6,4 +6,5 @@ public record CountrySwiftCodeDto(
         String countryISO2,
         boolean isHeadquarters,
         String swiftCode
-) {}
+) {
+}

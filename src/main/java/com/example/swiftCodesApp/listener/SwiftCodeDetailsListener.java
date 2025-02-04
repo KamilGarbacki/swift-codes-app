@@ -13,9 +13,9 @@ public class SwiftCodeDetailsListener {
     @PrePersist
     @PreUpdate
     private void beforeUpdate(SwiftCodeDetails details) {
-        try{
+        try {
             TransformUtil.allObjectFieldsToUpperCase(details);
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             throw new InternalServerException("Encountered an exception during entity transformation");
         }

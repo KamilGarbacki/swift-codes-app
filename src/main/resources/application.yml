@@ -1,23 +1,23 @@
 server:
-    port: 8080
+  port: 8080
 
 cors:
-    allowed-origins: ${CORS_ORIGINS:"*"}
-    allowed-methods: "*"
-    allowed-headers: "*"
-    exposed-headers: "*"
+  allowed-origins: ${CORS_ORIGINS:"*"}
+  allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"
 
 spring:
-    application:
-        name: swift-codes-app
-    datasource:
-        url: jdbc:postgresql://localhost:5432/swift
-        username: admin
-        password: admin
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                format_sql: true
+  application:
+    name: swift-codes-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swift
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
 

@@ -9,7 +9,9 @@ import java.util.Optional;
 
 public interface SwiftCodeDetailsRepo extends JpaRepository<SwiftCodeDetails, Long> {
     Optional<SwiftCodeDetails> findBySwiftCode(String swiftCode);
+
     List<SwiftCodeDetails> findByCountryISO2(String countryISO2);
+
     boolean existsBySwiftCode(String swiftCode);
 
     @Query("""

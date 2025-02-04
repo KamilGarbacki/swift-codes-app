@@ -6,4 +6,5 @@ public record CountrySwiftCodesListDto(
         String countryISO2,
         String countryName,
         List<CountrySwiftCodeDto> swiftCodes
-) {}
+) {
+}

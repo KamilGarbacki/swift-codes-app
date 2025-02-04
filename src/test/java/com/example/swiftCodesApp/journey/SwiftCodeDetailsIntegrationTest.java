@@ -25,10 +25,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class SwiftCodeDetailsIntegrationTest {
-    private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17.2")
-            .withDatabaseName("integration-tests-db")
-            .withUsername("sa")
-            .withPassword("sa");
+    private static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:17.2").withDatabaseName("integration-tests-db").withUsername("sa").withPassword("sa");
 
     @Autowired
     private WebTestClient webTestClient;
@@ -78,12 +75,7 @@ public class SwiftCodeDetailsIntegrationTest {
         sendPostRequest(req);
 
         // delete the swift code details
-        webTestClient.delete()
-                .uri(SWIFT_CODE_URI + "/" + req.swiftCode())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus()
-                .isOk();
+        webTestClient.delete().uri(SWIFT_CODE_URI + "/" + req.swiftCode()).accept(MediaType.APPLICATION_JSON).exchange().expectStatus().isOk();
 
         // try to get the deleted swift code
         sendGetRequest(req.swiftCode(), HttpStatus.NOT_FOUND);
@@ -105,55 +97,26 @@ public class SwiftCodeDetailsIntegrationTest {
         SwiftCodeDetails expectedDetails = swiftCodeDetailsMapper.toSwiftCodeDetails(headquartersReq);
         TransformUtil.allObjectFieldsToUpperCase(expectedDetails);
 
-        HeadquartersDetailsDto expected = swiftCodeDetailsMapper.toHeadquartersSwiftCodeDetailsDto(
-                toExpectedSwiftCode(headquartersReq)
-        );
-        expected.setBranches(List.of(
-                swiftCodeDetailsMapper.toSwiftCodeDetailsDto(
-                        toExpectedSwiftCode(headquartersReq)
-                )
-        ));
+        HeadquartersDetailsDto expected = swiftCodeDetailsMapper.toHeadquartersSwiftCodeDetailsDto(toExpectedSwiftCode(headquartersReq));
+        expected.setBranches(List.of(swiftCodeDetailsMapper.toSwiftCodeDetailsDto(toExpectedSwiftCode(headquartersReq))));
 
 
         //make sure the returned data matches the expected result
         assertThat(result).isEqualTo(expected);
     }
 
-
     // util functions
     private SwiftCodeDetailsReq getSwiftCodeRequest(String swiftCode) {
-        return new SwiftCodeDetailsReq(
-                "sample address",
-                "sample bank name",
-                "pl",
-                "poland",
-                swiftCode.endsWith("XXX"),
-                swiftCode
-        );
+        return new SwiftCodeDetailsReq("sample address", "sample bank name", "pl", "poland", swiftCode.endsWith("XXX"), swiftCode);
     }
 
     private void sendPostRequest(SwiftCodeDetailsReq req) {
-        webTestClient.post()
-                .uri(SWIFT_CODE_URI)
-                .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(Mono.just(req), SwiftCodeDetailsReq.class)
-                .exchange()
-                .expectStatus()
-                .isCreated();
+        webTestClient.post().uri(SWIFT_CODE_URI).accept(MediaType.APPLICATION_JSON).contentType(MediaType.APPLICATION_JSON).body(Mono.just(req), SwiftCodeDetailsReq.class).exchange().expectStatus().isCreated();
     }
 
     private SwiftCodeDetailsDto sendGetRequest(String uri, HttpStatus status) {
-        return webTestClient.get()
-                .uri(SWIFT_CODE_URI + "/" + uri)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-                .expectStatus()
-                .isEqualTo(status)
-                .expectBody(new ParameterizedTypeReference<SwiftCodeDetailsDto>() {
-                })
-                .returnResult()
-                .getResponseBody();
+        return webTestClient.get().uri(SWIFT_CODE_URI + "/" + uri).accept(MediaType.APPLICATION_JSON).exchange().expectStatus().isEqualTo(status).expectBody(new ParameterizedTypeReference<SwiftCodeDetailsDto>() {
+        }).returnResult().getResponseBody();
     }
 
     private SwiftCodeDetails toExpectedSwiftCode(SwiftCodeDetailsReq req) throws IllegalAccessException {
