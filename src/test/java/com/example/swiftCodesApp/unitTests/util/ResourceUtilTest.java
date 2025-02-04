@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ResourceUtilTest {
-
     @Test
     void readFile() throws IOException {
         // Given
