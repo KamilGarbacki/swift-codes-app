@@ -1,6 +1,7 @@
-package com.example.swiftCodesApp.util;
+package com.example.swiftCodesApp.unitTests.util;
 
 import com.example.swiftCodesApp.model.SwiftCodeDetails;
+import com.example.swiftCodesApp.util.TransformUtil;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 

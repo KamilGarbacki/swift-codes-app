@@ -1,6 +1,7 @@
-package com.example.swiftCodesApp.util;
+package com.example.swiftCodesApp.unitTests.util;
 
 import com.example.swiftCodesApp.model.SwiftCodeDetails;
+import com.example.swiftCodesApp.util.CsvUtil;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

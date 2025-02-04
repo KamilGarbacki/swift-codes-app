@@ -1,6 +1,7 @@
-package com.example.swiftCodesApp.repository;
+package com.example.swiftCodesApp.unitTests.repository;
 
 import com.example.swiftCodesApp.model.SwiftCodeDetails;
+import com.example.swiftCodesApp.repository.SwiftCodeDetailsRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

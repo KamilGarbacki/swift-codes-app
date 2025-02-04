@@ -1,7 +1,6 @@
-package com.example.swiftCodesApp.service;
+package com.example.swiftCodesApp.unitTests.service;
 
 import com.example.swiftCodesApp.controller.v1.requests.SwiftCodeDetailsReq;
-import com.example.swiftCodesApp.dto.CountrySwiftCodeDto;
 import com.example.swiftCodesApp.dto.CountrySwiftCodesListDto;
 import com.example.swiftCodesApp.dto.HeadquartersDetailsDto;
 import com.example.swiftCodesApp.dto.SwiftCodeDetailsDto;
@@ -10,6 +9,7 @@ import com.example.swiftCodesApp.exception.NotFoundException;
 import com.example.swiftCodesApp.mapper.SwiftCodeDetailsMapper;
 import com.example.swiftCodesApp.model.SwiftCodeDetails;
 import com.example.swiftCodesApp.repository.SwiftCodeDetailsRepo;
+import com.example.swiftCodesApp.service.SwiftCodeDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;

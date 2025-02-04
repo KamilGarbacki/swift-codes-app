@@ -1,8 +1,8 @@
-package com.example.swiftCodesApp.util;
+package com.example.swiftCodesApp.unitTests.util;
 
+import com.example.swiftCodesApp.util.ResourceUtil;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
