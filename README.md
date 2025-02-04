@@ -16,6 +16,12 @@ The project is avilable as a Docker Repository which can be accessed with
 ```sh
 docker pull kamilgarbacki/swift-code-app
 ```
+## Build the image yourslef
+You can build the image with the following command. 
+Be sure to edit the dockerhub username in the pom file first.
+```sh
+mvn package
+```
 
 ## Project Setup
 ### 1. Clone the Repository
