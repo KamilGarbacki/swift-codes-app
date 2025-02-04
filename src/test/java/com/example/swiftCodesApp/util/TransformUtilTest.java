@@ -8,6 +8,7 @@ class TransformUtilTest {
 
     @Test
     void allObjectFieldsToUpperCase() throws IllegalAccessException {
+        // Given
         SwiftCodeDetails swiftCodeDetails = new SwiftCodeDetails(
                 1L,
                 "sample-address",
@@ -28,6 +29,8 @@ class TransformUtilTest {
 
         TransformUtil.allObjectFieldsToUpperCase(swiftCodeDetails);
 
+        // When
+        // Then
         assertThat(swiftCodeDetails.toString()).isEqualTo(expected.toString());
     }
 }

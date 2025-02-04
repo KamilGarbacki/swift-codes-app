@@ -12,6 +12,7 @@ class CsvUtilTest {
 
     @Test
     void loadCsvFile() throws IOException {
+        // Given
         String pathToTestFile = "/data/testCsvFile.csv";
         List<String> columns = List.of(
                 "countryISO2",
@@ -32,12 +33,14 @@ class CsvUtilTest {
 
         List<SwiftCodeDetails> expected = List.of(swiftCode);
 
+        // When
         List<SwiftCodeDetails> result = CsvUtil.loadCsvFile(
                 pathToTestFile,
                 SwiftCodeDetails.class,
                 columns
         );
 
+        // Then
         assertThat(result.toString()).isEqualTo(expected.toString());
     }
 }

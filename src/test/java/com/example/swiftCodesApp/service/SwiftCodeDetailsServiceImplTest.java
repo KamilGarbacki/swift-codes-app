@@ -36,20 +36,25 @@ class SwiftCodeDetailsServiceImplTest {
 
     @Test
     void addSwiftCodeDetails() {
+        // Given
         SwiftCodeDetailsReq req = getSampleSwiftCodeDetailsReq();
 
+        // When
         when(swiftCodeDetailsRepo.save(any(SwiftCodeDetails.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
+        // Then
         assertThat(underTest.addSwiftCodeDetails(req))
                 .isEqualTo(swiftMapper.toSwiftCodeDetailsDto(swiftMapper.toSwiftCodeDetails(req)));
     }
 
     @Test
     void willThrowWhenSwiftCodeAlreadyExists() {
+        // When
         when(swiftCodeDetailsRepo.existsBySwiftCode(anyString()))
                 .thenReturn(true);
 
+        //Then
         assertThatThrownBy(() -> underTest.addSwiftCodeDetails(getSampleSwiftCodeDetailsReq()))
                 .isInstanceOf(ConflictException.class)
                 .hasMessage("This Swift code already exists");
@@ -57,19 +62,25 @@ class SwiftCodeDetailsServiceImplTest {
 
     @Test
     void deleteSwiftCodeDetails() {
+        // Given
         SwiftCodeDetails details = getSampleSwiftCodeDetails(false);
 
+        // When
         when(swiftCodeDetailsRepo.findBySwiftCode(details.getSwiftCode()))
                 .thenReturn(Optional.of(details));
         underTest.deleteSwiftCodeDetails(details.getSwiftCode());
 
+        // Then
         verify(swiftCodeDetailsRepo).delete(details);
     }
 
     @Test
     void willThrowWhenSwiftCodeToBeDeletedDoesNotExist() {
+        // Given
         String sampleSwiftCode = "abcdefghijk";
 
+        // When
+        // Then
         assertThatThrownBy(() -> underTest.deleteSwiftCodeDetails(sampleSwiftCode))
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("Swift code not found");
@@ -77,13 +88,16 @@ class SwiftCodeDetailsServiceImplTest {
 
     @Test
     void getCountrySwiftCodes() {
+        // Given
         SwiftCodeDetails details = getSampleSwiftCodeDetails(false);
 
+        // When
         when(swiftCodeDetailsRepo.findByCountryISO2(details.getCountryISO2()))
                 .thenReturn(List.of(details));
 
         CountrySwiftCodesListDto result = underTest.getCountrySwiftCodes(details.getCountryISO2());
 
+        // Then
         assertThat(result.countryISO2()).isEqualTo(details.getCountryISO2());
         assertThat(result.countryName()).isEqualTo(details.getCountryName());
         assertThat(result.swiftCodes()).isEqualTo(
@@ -95,7 +109,11 @@ class SwiftCodeDetailsServiceImplTest {
 
     @Test
     void willThrowWhenSwiftCodesAreEmpty() {
+        // Given
         String sampleISO2 = "pl";
+
+        // When
+        // Then
         assertThatThrownBy(() -> underTest.getCountrySwiftCodes(sampleISO2))
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("Swift code data for countryISO2 code %s not found".formatted(sampleISO2));
@@ -104,18 +122,22 @@ class SwiftCodeDetailsServiceImplTest {
 
     @Test
     void getSwiftCodeDetailsForBranch() {
+        // Given
         SwiftCodeDetails details = getSampleSwiftCodeDetails(false);
 
+        // When
         when(swiftCodeDetailsRepo.findBySwiftCode(details.getSwiftCode()))
                 .thenReturn(Optional.of(details));
 
         SwiftCodeDetailsDto result = underTest.getSwiftCodeDetails(details.getSwiftCode());
 
+        // Then
         assertThat(result).isEqualTo(swiftMapper.toSwiftCodeDetailsDto(details));
     }
 
     @Test
     void getSwiftCodeDetailsForHeadquarters() {
+        // Given
         SwiftCodeDetails headquarters = getSampleSwiftCodeDetails(true);
         SwiftCodeDetails branch = getSampleSwiftCodeDetails(false);
         HeadquartersDetailsDto expected = swiftMapper.toHeadquartersSwiftCodeDetailsDto(headquarters);
@@ -125,6 +147,7 @@ class SwiftCodeDetailsServiceImplTest {
                 )
         );
 
+        // When
         when(swiftCodeDetailsRepo.findBySwiftCode(headquarters.getSwiftCode()))
                 .thenReturn(Optional.of(headquarters));
 
@@ -133,12 +156,16 @@ class SwiftCodeDetailsServiceImplTest {
 
         SwiftCodeDetailsDto result = underTest.getSwiftCodeDetails(headquarters.getSwiftCode());
 
+        // Then
         assertThat(result).isEqualTo(expected);
     }
 
     @Test
     void willThrowWhenSwiftCodeDoesNotExist() {
+        // Given
         String sampleSwiftCode = "abcdefghijk";
+
+        // Then
         assertThatThrownBy(() -> underTest.getSwiftCodeDetails(sampleSwiftCode))
                 .isInstanceOf(NotFoundException.class)
                 .hasMessage("Swift code not found");
